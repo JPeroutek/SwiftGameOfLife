@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		565A5D801995A0CC00A70C72 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A5D7F1995A0CC00A70C72 /* Tile.swift */; };
 		56DE6AA01953DAC0004D9B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE6A9F1953DAC0004D9B3E /* AppDelegate.swift */; };
 		56DE6AA21953DAC0004D9B3E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56DE6AA11953DAC0004D9B3E /* GameScene.sks */; };
 		56DE6AA41953DAC0004D9B3E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE6AA31953DAC0004D9B3E /* GameScene.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		565A5D7F1995A0CC00A70C72 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		56DE6A9A1953DAC0004D9B3E /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DE6A9E1953DAC0004D9B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56DE6A9F1953DAC0004D9B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				56DE6A9F1953DAC0004D9B3E /* AppDelegate.swift */,
 				56DE6AA11953DAC0004D9B3E /* GameScene.sks */,
 				56DE6AA31953DAC0004D9B3E /* GameScene.swift */,
+				565A5D7F1995A0CC00A70C72 /* Tile.swift */,
 				56DE6AA51953DAC0004D9B3E /* GameViewController.swift */,
 				56DE6AA71953DAC0004D9B3E /* Main.storyboard */,
 				56DE6AAA1953DAC0004D9B3E /* Images.xcassets */,
@@ -286,6 +289,7 @@
 				56DE6AA41953DAC0004D9B3E /* GameScene.swift in Sources */,
 				56DE6AA61953DAC0004D9B3E /* GameViewController.swift in Sources */,
 				56DE6AA01953DAC0004D9B3E /* AppDelegate.swift in Sources */,
+				565A5D801995A0CC00A70C72 /* Tile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +477,7 @@
 				56DE6ABC1953DAC0004D9B3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56DE6ABD1953DAC0004D9B3E /* Build configuration list for PBXNativeTarget "GameOfLifeTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +486,7 @@
 				56DE6ABF1953DAC0004D9B3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -26,8 +26,30 @@ class GameScene: SKScene {
     var _pauseButton:SKSpriteNode = SKSpriteNode(imageNamed:"pause.png")
     
     //Define the array of tiles, and the margin between them 
-    var _tiles:SKSpriteNode[][] = []
+    var _tiles:Tile[][] = []
     var _margin = 4
+    
+    //Define variable used to tell if playing
+    var _isPlaying = false
+    
+    //Define variables to use in timer code
+    var _prevTime:CFTimeInterval = 0
+    var _timeCounter:CFTimeInterval = 0
+    
+    var _population:Int = 0
+    {
+        didSet
+        {
+            _populationValueLabel.text = "\(_population)"
+        }
+    }
+    var _generation:Int = 0
+    {
+        didSet
+        {
+            _generationValueLabel.text = "\(_generation)"
+        }
+    }
     
     override func didMoveToView(view: SKView)
     {
@@ -92,9 +114,10 @@ class GameScene: SKScene {
         // initialize the 2d array of tiles
         let tileSize = calculateTileSize()
         for r in 0.._numRows {
-            var tileRow:SKSpriteNode[] = []
+            var tileRow:Tile[] = []
             for c in 0.._numCols {
-                let tile = SKSpriteNode(imageNamed: "bubble.png")
+                let tile = Tile(imageNamed: "bubble.png")
+                tile.isAlive = false
                 tile.size = CGSize(width: tileSize.width, height: tileSize.height)
                 tile.anchorPoint = CGPoint(x: 0, y: 0)
                 tile.position = getTilePosition(row: r, column: c)
@@ -107,14 +130,50 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {
-        /* Called when a touch begins */
-        
-        
+        for touch: AnyObject in touches
+        {
+            //handles touching the blob/bubble things
+            var selectedTile:Tile? = getTileAtPosition(xPos: Int(touch.locationInNode(self).x), yPos: Int(touch.locationInNode(self).y))
+            if let tile = selectedTile
+            {
+                tile.isAlive = !tile.isAlive
+                if tile.isAlive
+                {
+                    _population++
+                }
+                else
+                {
+                    _population--
+                }
+            }
+            
+            //handles touching play and pause buttons
+            if CGRectContainsPoint(_playButton.frame, touch.locationInNode(self))
+            {
+                playButtonPressed()
+            }
+            if CGRectContainsPoint(_pauseButton.frame, touch.locationInNode(self))
+            {
+                pauseButtonPressed()
+            }
+        }
     }
    
     override func update(currentTime: CFTimeInterval)
     {
         /* Called before each frame is rendered */
+        if _prevTime == 0 {
+            _prevTime = currentTime
+        }
+        if _isPlaying
+        {
+            _timeCounter += currentTime - _prevTime
+            if _timeCounter > 0.5 {
+                _timeCounter = 0
+                timeStep()
+            }
+        }
+        _prevTime = currentTime
     }
     
     func calculateTileSize() -> CGSize
@@ -130,5 +189,82 @@ class GameScene: SKScene {
         let x = Int(_gridLowerLeftCorner.x) + _margin + (c * (Int(tileSize.width) + _margin))
         let y = Int(_gridLowerLeftCorner.y) + _margin + (r * (Int(tileSize.height) + _margin))
         return CGPoint(x: x, y: y)
+    }
+    
+    func isValidTile(row r: Int, column c:Int) -> Bool
+    {
+        return r >= 0 && r < _numRows && c >= 0 && c < _numCols
+    }
+    
+    func getTileAtPosition(xPos x: Int, yPos y: Int) -> Tile?
+    {
+        let r:Int = Int( CGFloat(y - (Int(_gridLowerLeftCorner.y) + _margin)) / CGFloat(_gridHeight) * CGFloat(_numRows))
+        let c:Int = Int( CGFloat(x - (Int(_gridLowerLeftCorner.x) + _margin)) / CGFloat(_gridWidth) * CGFloat(_numCols))
+        if isValidTile(row: r, column: c)
+        {
+            return _tiles[r][c]
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    func playButtonPressed()
+    {
+        _isPlaying = true
+    }
+    
+    func pauseButtonPressed()
+    {
+        _isPlaying = false
+    }
+    
+    func timeStep()
+    {
+        countLivingNeighbors()
+        updateCreatures()
+        _generation++
+    }
+    
+    func countLivingNeighbors()
+    {
+        for r in 0.._numRows {
+            for c in 0.._numCols
+            {
+                var numLivingNeighbors:Int = 0
+                for i in (r-1)...(r+1) {
+                    for j in (c-1)...(c+1)
+                    {
+                        if ( !((r == i) && (c == j)) && isValidTile(row: i, column: j)) {
+                            if _tiles[i][j].isAlive {
+                                numLivingNeighbors++
+                            }
+                        }
+                    }
+                }
+                _tiles[r][c].numLivingNeighbors = numLivingNeighbors
+            }
+        }
+    }
+    
+    func updateCreatures()
+    {
+        var numAlive = 0
+        for r in 0.._numRows {
+            for c in 0.._numCols
+            {
+                var tile:Tile = _tiles[r][c]
+                if tile.numLivingNeighbors == 3 {
+                    tile.isAlive = true
+                } else if tile.numLivingNeighbors < 2 || tile.numLivingNeighbors > 3 {
+                    tile.isAlive = false
+                }
+                if tile.isAlive {
+                    numAlive++
+                }
+            }
+        }
+        _population = numAlive
     }
 }
