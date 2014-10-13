@@ -26,7 +26,7 @@ class GameScene: SKScene {
     var _pauseButton:SKSpriteNode = SKSpriteNode(imageNamed:"pause.png")
     
     //Define the array of tiles, and the margin between them 
-    var _tiles:Tile[][] = []
+    var _tiles:[[Tile]] = []
     var _margin = 4
     
     //Define variable used to tell if playing
@@ -113,9 +113,9 @@ class GameScene: SKScene {
         
         // initialize the 2d array of tiles
         let tileSize = calculateTileSize()
-        for r in 0.._numRows {
-            var tileRow:Tile[] = []
-            for c in 0.._numCols {
+        for r in 0..<_numRows {
+            var tileRow:[Tile] = []
+            for c in 0..<_numCols {
                 let tile = Tile(imageNamed: "bubble.png")
                 tile.isAlive = false
                 tile.size = CGSize(width: tileSize.width, height: tileSize.height)
@@ -229,8 +229,8 @@ class GameScene: SKScene {
     
     func countLivingNeighbors()
     {
-        for r in 0.._numRows {
-            for c in 0.._numCols
+        for r in 0..<_numRows {
+            for c in 0..<_numCols
             {
                 var numLivingNeighbors:Int = 0
                 for i in (r-1)...(r+1) {
@@ -251,8 +251,8 @@ class GameScene: SKScene {
     func updateCreatures()
     {
         var numAlive = 0
-        for r in 0.._numRows {
-            for c in 0.._numCols
+        for r in 0..<_numRows {
+            for c in 0..<_numCols
             {
                 var tile:Tile = _tiles[r][c]
                 if tile.numLivingNeighbors == 3 {
