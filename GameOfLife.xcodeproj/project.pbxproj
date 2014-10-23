@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		563FAEDE19F95F3D0095F1DF /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 563FAEDD19F95F3D0095F1DF /* AppIcon.png */; };
 		565A5D801995A0CC00A70C72 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A5D7F1995A0CC00A70C72 /* Tile.swift */; };
 		56DE6AA01953DAC0004D9B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE6A9F1953DAC0004D9B3E /* AppDelegate.swift */; };
 		56DE6AA21953DAC0004D9B3E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56DE6AA11953DAC0004D9B3E /* GameScene.sks */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		563FAEDD19F95F3D0095F1DF /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		565A5D7F1995A0CC00A70C72 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		56DE6A9A1953DAC0004D9B3E /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DE6A9E1953DAC0004D9B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		56DE6AC01953DDDD004D9B3E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				563FAEDD19F95F3D0095F1DF /* AppIcon.png */,
 				56DE6AC11953DDDD004D9B3E /* balloon.png */,
 				56DE6AC21953DDDD004D9B3E /* bubble.png */,
 				56DE6AC31953DDDD004D9B3E /* grid.png */,
@@ -260,6 +263,7 @@
 				56DE6AD61953DDF3004D9B3E /* pause.png in Resources */,
 				56DE6AD41953DDF3004D9B3E /* button.png in Resources */,
 				56DE6AD71953DDF3004D9B3E /* play-pressed.png in Resources */,
+				563FAEDE19F95F3D0095F1DF /* AppIcon.png in Resources */,
 				56DE6ACB1953DDE8004D9B3E /* background.png in Resources */,
 				56DE6AC51953DDDD004D9B3E /* balloon.png in Resources */,
 				56DE6AD81953DDF3004D9B3E /* play.png in Resources */,
@@ -406,7 +410,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = GameOfLife/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -418,7 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = GameOfLife/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
